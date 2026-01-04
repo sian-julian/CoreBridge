@@ -1,0 +1,23 @@
+from rest_framework import permissions
+
+class IsFaculty(permissions.BasePermission):
+    """
+    Allows access only to users with the 'FACULTY' role.
+    """
+    def has_permission(self, request, view):
+        return (
+            request.user and 
+            request.user.is_authenticated and 
+            request.user.role == 'FACULTY'
+        )
+
+class IsStudent(permissions.BasePermission):
+    """
+    Allows access only to users with the 'STUDENT' role.
+    """
+    def has_permission(self, request, view):
+        return (
+            request.user and 
+            request.user.is_authenticated and 
+            request.user.role == 'STUDENT'
+        )
