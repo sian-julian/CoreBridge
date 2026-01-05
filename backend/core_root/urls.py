@@ -30,4 +30,14 @@ urlpatterns = [
     
     # We will create a custom registration view next
     path('api/users/', include('users.urls')), 
+
+    # NEW: Course Management URLs
+    path('api/courses/', include('courses.urls')),
 ]
+
+
+from django.conf import settings
+from django.conf.urls.static import static
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
